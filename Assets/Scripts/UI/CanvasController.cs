@@ -9,7 +9,14 @@ public class CanvasController : MonoBehaviour
     public GameObject options;
     public GameObject retry;
     public GameObject tapToStart;
-
+    public GameObject victory;
+    public GameObject failure;
+    int cars;
+    private void Awake()
+    {
+        victory.SetActive(false);
+        failure.SetActive(false);
+    }
     void Start()
     {
         
@@ -29,13 +36,31 @@ public class CanvasController : MonoBehaviour
             retry.SetActive(true);
             tapToStart.SetActive(false);
         }
-        if (LevelManager.gameState == GameState.Finish)
+
+#region temporary script
+        if (LevelManager.gameState == GameState.Finish && cars >= 10)
         {
-            print("finish");
+            victory.SetActive(true);
+            print("win");
+
         }
-        if (Input.GetKeyDown("space"))
+
+        else if (LevelManager.gameState == GameState.Finish && cars < 10)
+        {
+            failure.SetActive(true);
+            print("failure");
+        }
+
+        if (LevelManager.gameState == GameState.Normal && Input.GetKeyDown("space"))
         {
             LevelManager.gameState = GameState.Finish;
         }
+        if (LevelManager.gameState == GameState.Normal &&  Input.GetKeyDown("q"))
+        {
+            cars++;
+        }
+        print(cars);
+        #endregion
+    
     }
 }
