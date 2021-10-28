@@ -72,7 +72,8 @@ public class CanvasController : MonoBehaviour
     }
     public void Restart()
     {
+        LevelManager.gameState = GameState.BeforeStart;
         failure.SetActive(false);
-        SceneManager.LoadScene("UI");
+        SceneManager.LoadScene("GameScene");
     }
 }

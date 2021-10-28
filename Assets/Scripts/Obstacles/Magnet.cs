@@ -5,12 +5,10 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     Rigidbody rb;
-    Vector3 scaleChange;
     Rigidbody m_Rb;
     void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
-        scaleChange = new Vector3(0.3f, 0.077f, 0.91f);
     }
 
     void Update()
@@ -32,11 +30,10 @@ public class Magnet : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            other.transform.localScale = scaleChange;
             TruckMovement.instance.bodyParts.Remove(other.transform);
-            other.transform.parent = null;
+            other.transform.parent = transform;
             m_Rb = other.GetComponent<Rigidbody>();
-            m_Rb.constraints = RigidbodyConstraints.FreezeAll;
+            m_Rb.useGravity = true;
         }
     }
 }
