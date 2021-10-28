@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    #region instance structer
+    #region singleton
     public static LevelManager instance;
     public static GameState gameState;
     private void Awake()
