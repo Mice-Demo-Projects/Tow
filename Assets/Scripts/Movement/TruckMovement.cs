@@ -18,7 +18,7 @@ public class TruckMovement : MonoBehaviour
     }
     void GoForward()
     {
-        rigidbody.AddForce(transform.forward*0.5f);
+        rigidbody.velocity = new Vector3(0,0,5);
     }
 
     void Update()

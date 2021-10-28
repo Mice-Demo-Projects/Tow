@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class CanvasController : MonoBehaviour
 {
+    public static CanvasController instance;
     public Canvas canvas;
     public GameObject options;
     public GameObject retry;
@@ -14,6 +17,7 @@ public class CanvasController : MonoBehaviour
     int cars;
     private void Awake()
     {
+        instance = this;
         victory.SetActive(false);
         failure.SetActive(false);
     }
@@ -37,7 +41,9 @@ public class CanvasController : MonoBehaviour
             tapToStart.SetActive(false);
         }
 
-#region temporary script
+
+        #region temporary script
+        /*
         if (LevelManager.gameState == GameState.Finish && cars >= 10)
         {
             victory.SetActive(true);
@@ -59,8 +65,14 @@ public class CanvasController : MonoBehaviour
         {
             cars++;
         }
-        print(cars);
+        print(cars + " cars have been collected.");
+        */
         #endregion
-    
+
+    }
+    public void Restart()
+    {
+        failure.SetActive(false);
+        SceneManager.LoadScene("UI");
     }
 }
